@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using TestApi.Models.DB;
+using TestApi.Models.Humans.DB;
 using TestApi.Services.Implementations;
 using TestApi.Services.Interfaces;
 
@@ -14,7 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<IHumanService, HumanService>();
-builder.Services.AddScoped<ICalculatorService, CalculatorService>();
+builder.Services.AddScoped<IBasicCalculatorService, BasicCalculatorService>();
 
 builder.Services.AddDbContext<HumanDBContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

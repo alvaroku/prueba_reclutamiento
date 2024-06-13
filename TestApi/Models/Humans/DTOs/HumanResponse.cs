@@ -1,7 +1,8 @@
-﻿namespace TestApi.Models.DTOs
+﻿namespace TestApi.Models.Humans.DTOs
 {
-    public class HumanRequest
+    public class HumanResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public SexEnum Sex { get; set; }
         public int Age { get; set; }

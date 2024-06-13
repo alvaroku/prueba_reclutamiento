@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using TestApi.Models;
-using TestApi.Models.DB;
-using TestApi.Models.DTOs;
+using TestApi.Models.Humans;
+using TestApi.Models.Humans.DB;
+using TestApi.Models.Humans.DTOs;
 using TestApi.Services.Interfaces;
 
 namespace TestApi.Services.Implementations

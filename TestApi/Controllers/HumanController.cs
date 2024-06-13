@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TestApi.Models;
-using TestApi.Models.DTOs;
+using TestApi.Models.Humans;
+using TestApi.Models.Humans.DTOs;
 using TestApi.Services.Interfaces;
 
 namespace TestApi.Controllers
@@ -15,10 +15,6 @@ namespace TestApi.Controllers
             _humanService = humanService;
         }
 
-        /// <summary>
-        /// Obtiene usuarios de un listado fijo
-        /// </summary>
-        /// <returns>sss</returns>
         [HttpGet("GetUserMock")]
         public Human[] GetUserMock()
         {

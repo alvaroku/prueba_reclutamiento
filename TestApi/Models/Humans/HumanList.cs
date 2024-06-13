@@ -1,4 +1,4 @@
-﻿namespace TestApi.Models
+﻿namespace TestApi.Models.Humans
 {
     public class HumanList
     {

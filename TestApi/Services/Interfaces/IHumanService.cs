@@ -1,5 +1,5 @@
-﻿using TestApi.Models;
-using TestApi.Models.DTOs;
+﻿using TestApi.Models.Humans;
+using TestApi.Models.Humans.DTOs;
 
 namespace TestApi.Services.Interfaces
 {

@@ -1,4 +1,4 @@
-﻿namespace TestApi.Models.DTOs
+﻿namespace TestApi.Models.Humans.DTOs
 {
     public class Error
     {

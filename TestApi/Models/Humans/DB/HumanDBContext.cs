@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TestApi.Models.Humans;
 
-namespace TestApi.Models.DB
+namespace TestApi.Models.Humans.DB
 {
     public class HumanDBContext : DbContext
     {
