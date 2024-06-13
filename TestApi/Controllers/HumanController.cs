@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using TestApi.Models;
+using TestApi.Models.DTOs;
+using TestApi.Services.Interfaces;
 
 namespace TestApi.Controllers
 {
@@ -8,36 +9,48 @@ namespace TestApi.Controllers
     [ApiController]
     public class HumanController : ControllerBase
     {
-        // GET: api/<HhumanController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IHumanService _humanService;
+        public HumanController(IHumanService humanService) 
         {
-            return new string[] { "value1", "value2" };
+            _humanService = humanService;
         }
 
-        // GET api/<HhumanController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        /// <summary>
+        /// Obtiene usuarios de un listado fijo
+        /// </summary>
+        /// <returns>sss</returns>
+        [HttpGet("GetUserMock")]
+        public Human[] GetUserMock()
         {
-            return "value";
+            return _humanService.GetUsersMock();
         }
 
-        // POST api/<HhumanController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
         {
+            Response<IEnumerable<HumanResponse>> response = await _humanService.GetAll();
+            return response.IsSuccess?StatusCode(response.StatusCode,response.Data):StatusCode(response.StatusCode,response.GetErrorObject());
         }
 
-        // PUT api/<HhumanController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("GetHumanById/{humanId}")]
+        public async Task<IActionResult> GetHumanById(Guid humanId)
         {
+            Response<HumanResponse> response = await _humanService.GetHumanById(humanId);
+            return response.IsSuccess ? StatusCode(response.StatusCode, response.Data) : StatusCode(response.StatusCode, response.GetErrorObject());
         }
 
-        // DELETE api/<HhumanController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPost("CreateHuman")]
+        public async Task<IActionResult> CreateHuman([FromForm] HumanRequest newHuman)
         {
+            Response<HumanResponse> response = await _humanService.CreateHuman(newHuman);
+            return response.IsSuccess ? StatusCode(response.StatusCode, response.Data) : StatusCode(response.StatusCode, response.GetErrorObject());
+        }
+
+        [HttpPut("UpdateHuman/{humanId}")]
+        public async Task<IActionResult> Put(Guid humanId, [FromForm] HumanRequest newHuman)
+        {
+            Response<HumanResponse> response = await _humanService.UpdateHuman(humanId, newHuman);
+            return response.IsSuccess ? StatusCode(response.StatusCode, response.Data) : StatusCode(response.StatusCode, response.GetErrorObject());
         }
     }
 }
